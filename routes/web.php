@@ -28,3 +28,10 @@ Route::get('contact', function () {
 Route::get('aFewAccomplishments', function () {
     return view('aFewAccomplishments');
 });
+
+Route::get('about', function () {
+    return view('about');
+});
+Route::get('thingsicando', function () {
+    return view('thingsicando');
+});
