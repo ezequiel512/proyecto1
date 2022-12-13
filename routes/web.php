@@ -14,24 +14,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('paginaprincipal');
 });
-
-Route::get('encuentro', function () {
-    return view('encuentro');
+Route::get('login', function () {
+    return view('login');
 });
-
-Route::get('contact', function () {
-    return view('contact');
+Route::get('logout', function () {
+    return view('logout');
 });
-
-Route::get('aFewAccomplishments', function () {
-    return view('aFewAccomplishments');
+Route::get('productos', function () {
+    return view('listaproductos');
 });
-
-Route::get('about', function () {
-    return view('about');
+Route::get('productos/show/{id}', function () {
+    return view('mostrarproducto');
 });
-Route::get('thingsicando', function () {
-    return view('thingsicando');
+Route::get('productos/create', function () {
+    return view('añadirproducto');
+});
+Route::get('productos/edit/{id}', function () {
+    return view('editarproducto');
 });
