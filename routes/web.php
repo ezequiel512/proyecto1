@@ -23,14 +23,14 @@ Route::get('logout', function () {
     return view('logout');
 });
 Route::get('productos', function () {
-    return view('listaproductos');
+    return view('producto/listaproductos');
 });
 Route::get('productos/show/{id}', function () {
-    return view('mostrarproducto');
+    return view('producto/mostrarproducto');
 });
 Route::get('productos/create', function () {
-    return view('añadirproducto');
+    return view('producto/añadirproducto');
 });
 Route::get('productos/edit/{id}', function () {
-    return view('editarproducto');
+    return view('producto/editarproducto');
 });
