@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Psr\Http\Message\ServerRequestInterface;
+use Tqdev\PhpCrudApi\Api;
+use Tqdev\PhpCrudApi\Config\Config;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Tqdev\PhpCrudApi\Api;
@@ -18,7 +21,7 @@ use Tqdev\PhpCrudApi\Config\Config;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -32,12 +35,14 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     ]);
     $api = new Api($config);
     $response = $api->handle($request);
+    
+    /*
+    para RESTED
+    return $response;
+    */
 
-    /*Para RESTED
-    return $response; */
-
-    /*Para REACT-ADMIN*/
+    /*para REACT-ADMIN*/
     $records = json_decode($response->getBody()->getContents())->records;
-    return response()->json($records, 200, $headers = ['X-Total-Count' => $records]);
+    return response()->json($records, 200, $headers = ['X-Total-Count' => count($records)]);
 
 })->where('any', '.*');
