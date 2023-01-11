@@ -6,6 +6,10 @@ use Psr\Http\Message\ServerRequestInterface;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
 
+use Psr\Http\Message\ServerRequestInterface;
+use Tqdev\PhpCrudApi\Api;
+use Tqdev\PhpCrudApi\Config\Config;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,6 +35,7 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     ]);
     $api = new Api($config);
     $response = $api->handle($request);
+    
     /*
     para RESTED
     return $response;
