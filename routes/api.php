@@ -6,10 +6,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
 
-use Psr\Http\Message\ServerRequestInterface;
-use Tqdev\PhpCrudApi\Api;
-use Tqdev\PhpCrudApi\Config\Config;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
