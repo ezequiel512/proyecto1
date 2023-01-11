@@ -31,3 +31,4 @@ class CreateLugarTable extends Migration
         Schema::dropIfExists('lugares');
     }
 }
+
