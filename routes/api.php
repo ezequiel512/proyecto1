@@ -5,11 +5,6 @@ use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
-
-use Psr\Http\Message\ServerRequestInterface;
-use Tqdev\PhpCrudApi\Api;
-use Tqdev\PhpCrudApi\Config\Config;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,11 +30,12 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     ]);
     $api = new Api($config);
     $response = $api->handle($request);
-    
+
     /*
     para RESTED
-    return $response;
     */
+    // return $response;
+
 
     /*para REACT-ADMIN*/
     $records = json_decode($response->getBody()->getContents())->records;
