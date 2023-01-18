@@ -1,11 +1,9 @@
 <?php
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,11 +14,9 @@ use Tqdev\PhpCrudApi\Config\Config;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
-
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
         'address' => env('DB_HOST', '127.0.0.1'),
@@ -31,15 +27,20 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     ]);
     $api = new Api($config);
     $response = $api->handle($request);
+/* Para RESTED
+    return $response;
+ */
 
-    /*
-    para RESTED
-    */
-    // return $response;
-
-
-    /*para REACT-ADMIN*/
+/* Para REACT-ADMIN */
     $records = json_decode($response->getBody()->getContents())->records;
-    return response()->json($records, 200, $headers = ['X-Total-Count' => count($records)]);
+    $response = response()->json($records, 200, $headers = ['X-Total-Count' => count($records)]);
+    try {
+        $records = json_decode($response->getBody()->getContents())->records;
+        $response = response()->json($records, 200, $headers = ['X-Total-Count' => count($records)]);
+    } catch (\Throwable $th) {
+
+    }
+    return $response;
+/* Fin REACT-ADMIN */
 
 })->where('any', '.*');
