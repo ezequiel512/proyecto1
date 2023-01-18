@@ -14,15 +14,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        self::seedUser();
-        $this->command->alert('Tabla inicializada con datos');
+        // self::seedUser();
+        // $this->command->alert('Tabla inicializada con datos');
     }
-    private function seedUser(){
-        DB::table('users')->truncate();
-        DB::table('users')->insert([
-            'name'=>$_ENV['DATABASE_ADMIN'],
-            'email'=>$_ENV['DATABASE_EMAIL'],
-            'password'=>bcrypt($_ENV['DATABASE_PASS'])
-        ]);
-    }
+    // private function seedUser(){
+    //     DB::table('users')->truncate();
+    //     DB::table('users')->insert([
+    //         'name'=>$_ENV['DATABASE_ADMIN'],
+    //         'email'=>$_ENV['DATABASE_EMAIL'],
+    //         'password'=>bcrypt($_ENV['DATABASE_PASS'])
+    //     ]);
+    // }
 }

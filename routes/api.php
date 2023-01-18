@@ -27,6 +27,7 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     ]);
     $api = new Api($config);
     $response = $api->handle($request);
+
 /* Para RESTED
     return $response;
  */

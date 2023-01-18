@@ -1,14 +1,12 @@
 <?php
 
 namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
@@ -26,4 +24,4 @@ class DatabaseSeeder extends Seeder
                 'password'=>bcrypt(env('DATABASE_PASS'))
             ]);
         }
-    }
+}
