@@ -6,7 +6,8 @@ use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\UserController;
-// use App\Http\Controllers\API\ShoppingController;
+
+use App\Http\Controllers\API\ArtworkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,8 @@ use App\Http\Controllers\API\UserController;
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('artworks', [ArtworkController::class, 'index']);
 
 Route::apiResource('customers', CustomerController::class);
 Route::apiResource('users', UserController::class);
