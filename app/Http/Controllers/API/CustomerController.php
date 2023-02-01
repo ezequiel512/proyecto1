@@ -22,7 +22,7 @@ class CustomerController extends Controller
         $registrosCustomers =
             ($busqueda && array_key_exists('q', $busqueda))
             ? Customer::where('first_name', 'like', '%' . $busqueda['q'] . '%')
-                ->pagina($numElementos)
+                ->paginate($numElementos)
             : Customer::paginate($numElementos);
 
             return CustomerResource::collection($registrosCustomers);
