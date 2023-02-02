@@ -9,8 +9,6 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\TokenController;
 use App\Http\Controllers\API\ArtworkController;
 
-use App\Http\Controllers\API\TokenController;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,7 +25,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $user;
 });
 
-Route::apiResource('customers', CustomerController::class);
+Route::apiResource('customers', CustomerController::class)->middleware('auth:sanctum');
 
 Route::apiResource('users', UserController::class);
 
@@ -39,12 +37,6 @@ Route::delete('tokens', [TokenController::class, 'destroy'])->middleware('auth:s
 Route::get('artworks', [ArtworkController::class, 'index']);
 
 // Route::get('shoppings', [ShoppingController::class, 'index']);
-
-// emite un nuevo token
-Route::post('tokens', [TokenController::class, 'store']);
-// elimina el token del usuario autenticado
-Route::delete('tokens', [TokenController::class, 'destroy'])->middleware('auth:sanctum');
-
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
