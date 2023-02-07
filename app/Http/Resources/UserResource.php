@@ -14,9 +14,18 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+        // return parent::toArray($request);
+        $customer = $this->customer;
+        $name = $customer ? $customer->first_name . ' ' . $customer->last_name
+                          : $this->name;
+
         return [
             'id' => $this->id,
-            'attributes' => parent::toArray($request)
+            'attributes' => [
+                'name' => $name,
+                'email' => $this->email,
+                //'customer' => new CustomerResource($this->customer)
+            ]
         ];
     }
 }
