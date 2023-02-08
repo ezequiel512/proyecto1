@@ -9,6 +9,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\TokenController;
 use App\Http\Controllers\API\ArtworkController;
+use App\Http\Controllers\API\OrderController;
 
 /*
 |--------------------------------------------------------------------------

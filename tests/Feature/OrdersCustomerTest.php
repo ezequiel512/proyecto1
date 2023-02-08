@@ -7,10 +7,11 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 use App\Models\User;
+use App\Models\Grupo;
 use App\Models\Customer;
 use App\Models\Order;
 use Laravel\Sanctum\Sanctum;
-use App\Models\Grupo;
+
 
 class OrdersCustomerTest extends TestCase
 {
@@ -19,7 +20,9 @@ class OrdersCustomerTest extends TestCase
      *
      * @return void
      */
+
     public function test_OrdersCustomer()
+
     {
         $users = User::factory(2)
             ->has(Customer::factory()
@@ -28,6 +31,8 @@ class OrdersCustomerTest extends TestCase
             ->create();
         Sanctum::actingAs($users[1]);
         $response = $this->get('/api/orders');
+
+
 
         //$response->dumpHeaders();
 
