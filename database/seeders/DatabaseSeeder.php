@@ -11,6 +11,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -24,11 +25,11 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         Schema::disableForeignKeyConstraints();
 
+        DB::table('role_user')->truncate();
+        DB::table('roles')->truncate();
         DB::table('orders')->truncate();
         DB::table('customers')->truncate();
         DB::table('users')->truncate();
-        DB::table('roles')->truncate();
-        DB::table('role_user')->truncate();
 
         $userAdmin = User::create([
             'name' => env('DATABASE_ADMIN'),
