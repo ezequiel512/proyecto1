@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
 
         Schema::enableForeignKeyConstraints();
 
-        $this->command->alert('¡Tabla users inicializada con datos!');
+        $this->command->alert('¡Tablas actualizadas!');
         }
     }
 }
