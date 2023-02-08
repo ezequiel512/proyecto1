@@ -7,6 +7,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Resources\OrderResource;
 
+
 class OrderController extends Controller
 {
     /**
@@ -17,13 +18,12 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        if($user->isAdmin()){
-            $orders = Order::all();
-        }else{
-        $orders = $user->customer->orders;
+
+        $orders = $user->isAdmin() ? Order::all()
+                                   : $user->customer->orders;
+
+        return OrderResource::collection($orders);
     }
-    return OrderResource::collection($orders);
-}
 
     /**
      * Store a newly created resource in storage.
