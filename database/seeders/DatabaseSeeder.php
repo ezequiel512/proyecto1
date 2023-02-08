@@ -11,6 +11,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -24,32 +25,38 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         Schema::disableForeignKeyConstraints();
 
+        DB::table('role_user')->truncate();
+        DB::table('roles')->truncate();
         DB::table('orders')->truncate();
         DB::table('customers')->truncate();
         DB::table('users')->truncate();
-        DB::table('roles')->truncate();
-        DB::table('role_user')->truncate();
 
-        User::create([
+        $userAdmin = User::create([
             'name' => env('DATABASE_ADMIN'),
             'email' => env('DATABASE_EMAIL'),
             'password' => Hash::make(env('DATABASE_PASS')),
             'email_verified_at' => now()
         ]);
 
-        Role::create([
-            'name' => 'Admin',
+        $roleAdmin = Role::create([
+            'name' => 'Admin'
         ]);
 
-        Role::create([
-            'name' => 'customer',
+        $roleCustomer = Role::create([
+            'name' => 'Customer'
         ]);
 
-        User::factory(10)
+        $userAdmin->roles()->attach($roleAdmin->id);
+
+        $userCustomers = User::factory(10)
         ->has(Customer::factory()
         ->has(Order::factory()->count(3))
-        ->count(2))
+        ->count(1))
         ->create();
+
+        foreach ($userCustomers as $userCustomer) {
+            $userCustomer->roles()->attach($roleCustomer->id);
+        }
 
         Model::reguard();
 
