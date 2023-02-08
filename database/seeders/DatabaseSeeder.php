@@ -30,32 +30,38 @@ class DatabaseSeeder extends Seeder
         DB::table('roles')->truncate();
         DB::table('role_user')->truncate();
 
-        User::create([
+        $userAdmin = User::create([
             'name' => env('DATABASE_ADMIN'),
             'email' => env('DATABASE_EMAIL'),
             'password' => Hash::make(env('DATABASE_PASS')),
             'email_verified_at' => now()
         ]);
 
-        Role::create([
-            'name' => 'Admin',
+        $roleAdmin = Role::create([
+            'name' => 'Admin'
         ]);
 
-        Role::create([
-            'name' => 'customer',
+        $roleCustomer = Role::create([
+            'name' => 'Customer'
         ]);
 
-        User::factory(10)
+        $userAdmin->roles()->attach($roleAdmin->id);
+
+        $userCustomers = User::factory(10)
         ->has(Customer::factory()
         ->has(Order::factory()->count(3))
-        ->count(2))
+        ->count(1))
         ->create();
+
+        foreach ($userCustomers as $userCustomer) {
+            $userCustomer->roles()->attach($roleCustomer->id);
+        }
 
         Model::reguard();
 
         Schema::enableForeignKeyConstraints();
 
-        $this->command->alert('¡Tabla users inicializada con datos!');
+        $this->command->alert('¡Tablas actualizadas!');
         }
     }
 }
