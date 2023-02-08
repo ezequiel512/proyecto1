@@ -6,6 +6,7 @@ use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\TokenController;
 use App\Http\Controllers\API\ArtworkController;
 
@@ -28,6 +29,8 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::apiResource('customers', CustomerController::class)->middleware('auth:sanctum');
 
 Route::apiResource('users', UserController::class);
+
+Route::apiResource('orders', OrderController::class)->middleware('auth:sanctum');
 
 // emite un nuevo token
 Route::post('tokens', [TokenController::class, 'store']);
