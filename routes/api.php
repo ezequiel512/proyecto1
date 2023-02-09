@@ -7,6 +7,7 @@ use Tqdev\PhpCrudApi\Config\Config;
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\OrderController;
+use App\Http\Controllers\API\AvatarController;
 use App\Http\Controllers\API\TokenController;
 use App\Http\Controllers\API\ArtworkController;
 
@@ -38,6 +39,13 @@ Route::post('tokens', [TokenController::class, 'store']);
 Route::delete('tokens', [TokenController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('artworks', [ArtworkController::class, 'index']);
+
+Route::post('/avatars', [AvatarController::class, 'store'])->middleware('auth:sanctum');
+
+Route::get('/avatars', [AvatarController::class, 'getAvatar'])->middleware('auth:sanctum');
+
+Route::get('/avatars/{user_id}', [AvatarController::class, 'getUserAvatar']);
+
 
 // Route::get('shoppings', [ShoppingController::class, 'index']);
 
