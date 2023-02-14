@@ -9,6 +9,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\TokenController;
 use App\Http\Controllers\API\ArtworkController;
 use App\Http\Controllers\API\OrderController;
+use App\Http\Controllers\API\AvatarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,13 @@ Route::apiResource('users', UserController::class);
 
 Route::apiResource('orders', OrderController::class)->middleware('auth:sanctum');
 
-// emite un nuevo token
+Route::post('/avatars', [AvatarController::class, 'store'])->middleware('auth:sanctum');
+
+Route::get('/avatars', [AvatarController::class, 'getAvatar'])->middleware('auth:sanctum');
+
+Route::get('/avatars/{id}', [AvatarController::class, 'getUserAvatar']);
+
+// emite un nuevo tokenz
 Route::post('tokens', [TokenController::class, 'store']);
 // elimina el token del usuario autenticado
 Route::delete('tokens', [TokenController::class, 'destroy'])->middleware('auth:sanctum');
