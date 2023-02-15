@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Product;
 use App\Models\Customer;
 use App\Models\User;
 use App\Models\Order;
@@ -30,6 +32,9 @@ class DatabaseSeeder extends Seeder
         DB::table('orders')->truncate();
         DB::table('customers')->truncate();
         DB::table('users')->truncate();
+        DB::table('products')->truncate();
+        DB::table('categories')->truncate();
+        DB::table('category_product')->truncate();
 
         $userAdmin = User::create([
             'name' => env('DATABASE_ADMIN'),
@@ -56,6 +61,28 @@ class DatabaseSeeder extends Seeder
 
         foreach ($userCustomers as $userCustomer) {
             $userCustomer->roles()->attach($roleCustomer->id);
+        }
+
+        $productSabor = Product::factory(10)
+        ->create();
+
+        $categorySabor = Category::create([
+            'name' => "Sabor"
+        ]);
+
+        foreach ($productSabor as $productSabor) {
+            $productSabor->categories()->attach($categorySabor->id);
+        }
+
+        $productVaper = Product::factory(10)
+        ->create();
+
+        $categoryVaper = Category::create([
+            'name' => "Vaper"
+        ]);
+
+        foreach ($productVaper as $productVaper) {
+            $productVaper->categories()->attach($categoryVaper->id);
         }
 
         Model::reguard();
