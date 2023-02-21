@@ -30,7 +30,7 @@ class CustomerController extends Controller
         $numElementos = $request->input('numElementos');
         $registrosCustomers =
             ($busqueda && array_key_exists('q', $busqueda))
-            ? Customer::where('first_name', 'like', '%' . $busqueda['q'] . '%')
+            ? Customer::where('Nombre', 'like', '%' . $busqueda['q'] . '%')
                 ->paginate($numElementos)
             : Customer::paginate($numElementos);
 
