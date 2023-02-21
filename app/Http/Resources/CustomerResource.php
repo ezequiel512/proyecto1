@@ -18,11 +18,11 @@ class CustomerResource extends JsonResource
         return [
             'id' => $this->id,
             'attributes' => [
-                'first_name' => $this->first_name,
-                'last_name' => $this->last_name,
-                'job_title' => $this->job_title,
-                'city' => $this->city,
-                'country' => $this->country,
+                'Nombre' => $this->Nombre,
+                'Apellido' => $this->Apellido,
+                'tlf' => $this->tlf,
+                'ciudad' => $this->ciudad,
+                'pais' => $this->pais,
                 'user_id' => $this->user_id,
                 'user' => new UserResource($this->user),
                 'orders' => OrderResource::collection($this->orders)

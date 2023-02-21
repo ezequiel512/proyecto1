@@ -16,7 +16,7 @@ class UserResource extends JsonResource
     {
         // return parent::toArray($request);
         $customer = $this->customer;
-        $name = $customer ? $customer->first_name . ' ' . $customer->last_name
+        $name = $customer ? $customer->Nombre . ' ' . $customer->Apellido
                           : $this->name;
 
         return [

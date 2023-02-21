@@ -15,11 +15,11 @@ class CustomerFactory extends Factory
     {
         $this->faker = \Faker\Factory::create('es_ES');
         return [
-            'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
-            'job_title' => $this->faker->word(),
-            'city' => $this->faker->city(),
-            'country' => $this->faker->country()
+            'Nombre' => $this->faker->firstName(),
+            'Apellido' => $this->faker->lastName(),
+            'tlf' => $this->faker->phoneNumber(),
+            'ciudad' => $this->faker->city(),
+            'pais' => $this->faker->country()
         ];
     }
 }
