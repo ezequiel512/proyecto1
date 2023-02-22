@@ -11,6 +11,7 @@ use App\Http\Controllers\API\AvatarController;
 use App\Http\Controllers\API\TokenController;
 use App\Http\Controllers\API\ArtworkController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::apiResource('users', UserController::class);
 Route::apiResource('orders', OrderController::class)->middleware('auth:sanctum');
 
 Route::apiResource('products', ProductController::class)->middleware('auth:sanctum');
+
+Route::apiResource('categories', CategoryController::class)->middleware('auth:sanctum');
 
 // emite un nuevo token
 Route::post('tokens', [TokenController::class, 'store']);
